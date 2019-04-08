@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<style>
+
+body {
+
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+ 
+
+ 
+
+.topnav {
+
+  overflow: hidden;
+
+  background-color: grey;
+
+  position: relative;
+
+   
+
+}
+
+ 
+
+.topnav #myLinks {
+
+  display: none;
+
+}
+
+ 
+
+.topnav a {
+
+  color: white;
+
+  padding: 14px 16px;
+
+  text-decoration: none;
+
+  font-size: 17px;
+
+  display: block;
+
+}
+
+ 
+
+.topnav a.icon {
+
+  background: grey;
+
+  display: block;
+
+  position: absolute;
+
+  right: 0;
+
+  top: 0;
+
+}
+
+ 
+
+ 
+
+.active {
+
+  background-color: grey;
+
+  color: white;
+
+}
+
+ 
+
+#backres {
+
+
+    background-image: url('images/lib4.jpg'); background-repeat: repeat; background-size: 100%; background-position: center center;   
+
+}
+
+#scale {
+       padding: 20px;
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        font: 18px Arial, sans-serif;
+}
+
+</style>
+
+</head>
+
+<body class="view h1-responsive" id="backres">
+
+ 
+
+<!-- Simulate a smartphone / tablet -->
+
+<div class="container-fluid">
+
+ 
+
+<!-- Top Navigation Menu -->
+
+<div class="topnav">
+
+  <a href="#home" class="active">myBrary!</a>
+
+  <div id="myLinks">
+
+    <div class="container-fluid" style="margin-top:10px; margin-bottom:10px;">
+
+     <div align="center"> <i class='fas fa-book-open' style='font-size:20px' align="center" ></i>  Hi </div>
+
+      <div align="center" style="margin-top:10px;">
+
+      <button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal" style="position: center center">SignUp/Login</button> </div> 
+
+      
+
+          <div class="modal fade" id="myModal" role="dialog">
+
+            <div class="modal-dialog">
+
+            <!-- Modal content-->
+
+             <div class="modal-content">
+
+               <div >
+
+                 <button style="margin-top:10px; margin-right:10px;" type="button" class="close" data-dismiss="modal">&times;</button>
+
+                 <h4 align="center" style="margin-top:15px" class="modal-title">Login</h4>
+
+               </div>
+
+               <div class="modal-body">
+
+               <form id="myForm" style="margin-top:20px;">   
+
+  <div class="input-group">
+
+    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+
+    <input id="lname" type="text" class="form-control input-lg"  name="Username" placeholder="Username">
+
+  </div>
+
+  <div class="input-group" style="margin-top:20px;">
+
+    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+
+    <input id="lpass" type="password"  class="form-control input-lg"  name="password" placeholder="Password">
+
+  </div>
+
+ 
+
+ </form>
+
+     <div class=" container-fluid row" style="margin-top:20px;">
+
+     <div class="col-sm-4">
+
+      <p id ="linfo"></p>
+
+       <button type="button" class="btn btn-info" onclick="login()">Login</button>
+
+    
+
+     </div>
+
+     <div class="col-sm-4 " style="margin-top:10px;">
+
+        <p> Don't have an Account ? <button type="button" class="btn btn-link" data-toggle="modal" data-target="#signUp">SignUp</button>
+
+        </div>
+
+        </div>
+
+        </div>
+
+        </div>
+
+        </div>
+
+        </div>
+
+            <div class="modal fade" id="signUp" role="dialog">
+
+           <div class="modal-dialog">
+
+   
+
+            <!-- Modal content-->
+
+              <div class="modal-content">
+
+             
+
+                <button type="button" style="margin-top:10px; margin-right:10px;" class="close" data-dismiss="modal">&times;</button>
+
+                <h4 align="center" style="margin-top:15px" class="modal-title">SignUp</h4>
+
+ 
+
+            <div class="modal-body">
+
+              <form style="margin-top:20px;">   
+
+                <div class="input-group">
+
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+
+                  <input id="uname" type="text" class="form-control input-lg"  name="Username" placeholder="Username">
+
+                </div>
+
+                <div class="input-group" style="margin-top:20px;">
+
+                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+
+                 <input id="upass" type="password" class="form-control input-lg"  name="password" placeholder="Password">
+
+                </div>
+
+                <div class="input-group" style="margin-top:20px;">
+
+                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+
+                 <input id="repass" type="password" class="form-control input-lg"  name="Re-enter password" placeholder="Re-enter Password">
+
+                </div>
+
+              </form>
+
+              <div class="row" style="margin-top:20px;">
+
+     <div class="col-sm-4" align="center">
+
+       <p id="info"></p>
+
+       <button  type="button" class="btn btn-info" align="center" onclick="signup()">Submit</button>   
+
+     </div>
+
+       </div> 
+
+            </div>
+
+      </div>
+
+     
+
+    </div>
+
+  </div>
+
+       
+
+     </div>
+
+       </div> 
+
+               
+
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+
+    <i class="fa fa-bars"></i>
+
+  </a>
+
+</div>
+
+ 
+
+<div style="padding-left:16px;margin-top:20px;"  id ="scale">
+
+ 
+
+  <p >This example demonstrates how a navigation menu on a mobile/smart phone could look like.
+
+     This example demonstrates how a navigation menu on a mobile/smart phone could look like.
+
+     This example demonstrates how a navigation menu on a mobile/smart phone could look like.
+
+     This example demonstrates how a navigation menu on a mobile/smart phone could look like.
+
+  </p>
+
+  <p>Click on the hamburger menu (three bars) in the top right corner, to toggle the menu.
+
+     Click on the hamburger menu (three bars) in the top right corner, to toggle the menu.
+
+     Click on the hamburger menu (three bars) in the top right corner, to toggle the menu.
+
+     Click on the hamburger menu (three bars) in the top right corner, to toggle the menu.
+
+     Click on the hamburger menu (three bars) in the top right corner, to toggle the menu.
+
+  </p>
+
+</div>
+
+ 
+
+<!-- End smartphone / tablet look -->
+
+</div>
+
+ 
+
+<script>
+
+function signup()
+
+{
+
+    let pass =      document.getElementById("upass").value;
+
+    let repass = document.getElementById("repass").value;
+
+    var f = pass.localeCompare(repass);
+
+    if(f==0)
+
+       register();
+
+  //  document.getElementById("info").innerHTML = f+" Password matched!"
+
+    else
+
+       document.getElementById("info").innerHTML = " Password Mismatched!"
+
+}
+
+</script>
+
+<script>
+
+function register()
+
+{
+
+let uname = document.getElementById("uname").value;
+
+let upass = document.getElementById("upass").value;
+
+    var user = {
+
+     "name":uname,
+
+     "password":upass
+
+    }
+
+var xhr = new XMLHttpRequest();
+
+xhr.addEventListener("readystatechange", function () {
+
+  if (this.readyState === 4 && this.status == 200) {
+
+       document.getElementById("info").innerHTML = this.responseText;
+
+    console.log(this.responseText);
+
+  }
+
+});
+
+ 
+
+xhr.open("POST", "http://localhost:8080/mybrary/rest/user");
+
+xhr.setRequestHeader("Content-Type", "application/json");
+
+xhr.setRequestHeader("Access-Control-Allow-Credentials", "false");
+
+xhr.send(JSON.stringify({ "uname": user.name ,"password":user.password}));
+
+}
+
+</script>
+
+ 
+
+<script>
+
+function createCookie(cookieName,cookieValue,daysToExpire)
+{
+  var date = new Date();
+  date.setTime(date.getTime()+(daysToExpire*24*60*60*1000));
+  window.document.cookie = cookieName + "=" + cookieValue + "; expires=" + date.toGMTString();
+}
+
+function login()
+
+{
+
+       var form = document.getElementById("myForm");
+
+       let name = document.getElementById("lname").value;
+
+       let pass = document.getElementById("lpass").value;
+
+       var xhr = new XMLHttpRequest();
+       xhr.addEventListener("readystatechange", function () {
+      var  f=1;
+      var r;
+      var input="";
+         if (this.readyState === 4 && this.status == 200) {
+            r = this.responseText;
+            f = r.localeCompare("t");
+            if(f == 0){
+            	createCookie("uname",name,1);
+               localStorage.setItem( 'local', name );
+               window.location.href = "http://localhost:8080/mybrary/content.html";
+             }
+            else
+            	document.getElementById("linfo").innerHTML = "Invalid Credentials";
+           console.log(this.responseText);
+           console.log(this.responseText);
+
+         }
+
+       });
+
+       var uri = "http://localhost:8080/mybrary/rest/user?name="+name+"&pass="+pass;
+
+       xhr.open("GET", uri);
+
+       xhr.send(form);
+
+      
+
+}
+
+ 
+
+</script>
+
+ 
+
+<script>
+
+function myFunction() {
+
+  var x = document.getElementById("myLinks");
+
+  if (x.style.display === "block") {
+
+    x.style.display = "none";
+
+  } else {
+
+    x.style.display = "block";
+
+  }
+
+}
+
+</script>
+
+ 
+
+</body>
+
+</html>
+
+ 

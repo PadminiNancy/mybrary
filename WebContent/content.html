@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<style>
+
+body {
+
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.topnav {
+
+  overflow: hidden;
+
+  background-color: grey;
+
+  position: relative;
+
+   
+
+}
+
+ 
+
+.topnav #myLinks {
+
+  display: none;
+
+}
+
+ 
+
+.topnav a {
+
+  color: white;
+
+  padding: 14px 16px;
+
+  text-decoration: none;
+
+  font-size: 17px;
+
+  display: block;
+
+}
+
+ 
+
+.topnav a.icon {
+
+  background: grey;
+
+  display: block;
+
+  position: absolute;
+
+  right: 0;
+
+  top: 0;
+
+}
+
+ 
+
+ 
+
+.active {
+
+  background-color: grey;
+
+  color: white;
+
+}
+
+ 
+
+#backres {
+
+
+    background-image: url('images/lib4.jpg'); background-repeat: repeat; background-size: 100%; background-position: center center;   
+
+}
+
+ 
+
+#scale {
+
+ 
+
+  padding: 20px;
+
+        background: rgba(0, 0, 0, 0.4);
+
+        color: #fff;
+
+        font: 18px Arial, sans-serif;
+
+ }      
+
+        .just-padding {
+
+  padding: 15px;
+
+}
+
+ 
+
+.list-group.list-group-root {
+
+  padding: 0;
+
+  overflow: hidden;
+
+}
+
+ 
+
+.list-group.list-group-root .list-group {
+
+  margin-bottom: 0;
+
+}
+
+ 
+
+.list-group.list-group-root .list-group-item {
+
+  border-radius: 0;
+
+  border-width: 1px 0 0 0;
+
+}
+
+ 
+
+.list-group.list-group-root > .list-group-item:first-child {
+
+  border-top-width: 0;
+
+}
+
+ 
+
+.list-group.list-group-root > .list-group > .list-group-item {
+
+  padding-left: 30px;
+
+}
+
+ 
+
+.list-group.list-group-root > .list-group > .list-group > .list-group-item {
+
+  padding-left: 45px;
+
+}
+
+ 
+
+.list-group-item .glyphicon {
+
+  margin-right: 5px;
+
+ 
+
+ 
+
+}
+
+</style>
+
+</head>
+
+<body onload="checkCookie()" class="view h1-responsive" id="backres">
+
+ 
+
+<!-- Simulate a smartphone / tablet -->
+
+<div class="container-fluid">
+
+<!-- Top Navigation Menu -->
+
+<div class="topnav">
+
+  <a href="#home" class="active">mybrary!</a>
+
+  <div id="myLinks">
+
+    <div class="container-fluid" style="margin-top:10px; margin-bottom:10px;">
+
+     <div align="center"> <i  class='fas fa-book-open' style='font-size:20px' align="center" ></i>  Hi  <p id="username">  </p></div>
+     
+
+      <div align="center" style="margin-top:10px;"><button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal" style="position: center center" onclick="logout()">Logout</button> </div>        
+
+    </div>
+
+  </div>
+
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+
+    <i class="fa fa-bars"></i>
+
+  </a>
+
+</div>
+
+<div class="container" style="padding-left:16px;margin-top:20px;margin-bottom:20px;">
+
+  <span id="addBook" class="glyphicon glyphicon-plus" style="font-size:28px;color:white;margin-bottom:20px;" data-toggle="modal" data-target="#myModal"></span> 
+
+ <div class="container" id="book">
+    
+</div>
+</div>
+
+        <div class="modal fade" id="myModal" role="dialog">
+
+            <div class="modal-dialog">
+
+            <!-- Modal content-->
+
+             <div class="modal-content">
+
+               <div >
+
+                 <button style="margin-top:10px; margin-right:10px;" type="button" class="close" data-dismiss="modal">&times;</button>
+
+                 <h4 align="center" style="margin-top:15px" class="modal-title">Add your Books!</h4>
+
+               </div>
+
+               <div class="modal-body">
+
+               <form id="myForm" style="margin-top:20px;">   
+
+  <div class="input-group">
+
+    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+
+    <input id="bookname" type="text" class="form-control input-lg"  name="Book Name" placeholder="Book Name">
+
+  </div>
+
+  <div class="input-group" style="margin-top:20px;">
+
+    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+
+    <input id="rauthor" type="text"  class="form-control input-lg"  name="Author" placeholder="Author">
+
+  </div>
+
+  <div class="input-group" style="margin-top:20px;">
+
+    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+
+    <input id="rprice" type="text" class="form-control input-lg"  name="Price" placeholder="Price">
+
+  </div>
+  
+  <div class="input-group" style="margin-top:20px;">
+
+    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+
+    <input id="rstatus" type="text" class="form-control input-lg"  name="Status" placeholder="Status">
+
+  </div>
+  
+  <!-- <div class="input-group" style="margin-top:20px;">
+
+    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+
+    <input id="lname" type="text" class="form-control input-lg"  name="Comment" placeholder="Comment">
+
+  </div> -->
+
+ </form>
+
+     <div class=" container-fluid row" style="margin-top:20px;">
+
+     <div class="col-sm-4">
+
+      <p id ="linfo"></p>
+
+       <button type="button" class="btn btn-info" onclick="onSubmit()">Submit</button>
+
+     </div>
+      </div>
+
+        </div>
+
+
+<script>
+
+function onSubmit()
+{
+	var user = accessCookie("uname");
+	  if(user !== ""){
+		  
+		  var uname = user;
+		  
+	  }
+	  
+	let bookname = document.getElementById("bookname").value;
+	let author = document.getElementById("rauthor").value;
+	let price = document.getElementById("rprice").value;
+	let status = document.getElementById("rstatus").value;
+
+	    var user = {
+
+	     "book_name":bookname,
+	     "author":author,
+	     "price":price,
+	     "status":status
+
+	    }
+
+	var xhr = new XMLHttpRequest();
+
+	xhr.addEventListener("readystatechange", function () {
+
+	  if (this.readyState === 4 && this.status == 200) {
+
+		 window.location.href = "http://localhost:8080/mybrary/content.html";
+	    console.log(this.responseText);
+
+	  }
+	  else
+		  document.getElementById("info").innerHTML = "Submision failed!..Please try again";
+
+	});
+
+	var uri = "http://localhost:8080/mybrary/rest/user/"+uname+"/books";
+
+	xhr.open("POST", uri);
+
+	xhr.setRequestHeader("Content-Type", "application/json");
+	xhr.setRequestHeader("Access-Control-Allow-Credentials", "false");
+	xhr.send(JSON.stringify({ "book_name": user.book_name ,"author":user.author ,"price": user.price ,"status":user.status}));
+	
+}
+
+function myFunction() {
+
+  var x = document.getElementById("myLinks");
+
+  if (x.style.display === "block") {
+
+    x.style.display = "none";
+
+  } else {
+
+    x.style.display = "block";
+
+  }
+
+}
+
+</script>
+
+<script>
+
+function accessCookie(cookieName)
+{
+  var name = cookieName + "=";
+  var allCookieArray = document.cookie.split(';');
+  for(var i=0; i<allCookieArray.length; i++)
+  {
+    var temp = allCookieArray[i].trim();
+    if (temp.indexOf(name)==0)
+    return temp.substring(name.length,temp.length);
+	  }
+	return "";
+}
+
+function checkCookie()
+{
+  var user = accessCookie("uname");
+  if(user !== ""){
+	  document.getElementById("username").display = 'block';
+	  document.getElementById("username").innerHTML = user;
+	  document.getElementById("book").display = 'block';
+	  getBooks(user);
+  }
+  
+  else
+	  document.getElementById("book").style.display = 'none';
+	  
+
+  console.log(user);
+}
+
+function getBooks(uname)
+{
+	
+	var xhr = new XMLHttpRequest();
+    xhr.addEventListener("readystatechange", function () {
+   var  f=1;
+   var r="";
+   
+   var input="";
+      if (this.readyState === 4 && this.status == 200) {
+       var  r = (this.responseText);
+       //  r = '{"result":true, "count":42}';
+       var  obj = JSON.parse(r);
+       var topNode = document.createElement("div");
+       var node = document.createElement("div");  // Create a <li> node
+	    node.className = "list-group list-group-root well";
+       for(i=0;i<obj.length;++i){
+ 
+    	   	var nested1 = document.createElement("a"); // Create a text node
+    	   	nested1.className = "list-group-item";
+    	   	nested1.setAttribute("data-toggle","collapse");
+    	    var id = "#"+i;
+    	    nested1.setAttribute("href",id);
+    	    
+    	  // 	nested1.dataset.data-toggle = "collapse";
+    	   	
+    	   	var nested2 = document.createElement("i"); // Create a text node
+    	   	nested2.className = "glyphicon glyphicon-chevron-right";
+    	   	nested2.innerText = obj[i][1]
+    	   	nested1.appendChild(nested2);
+    	   	
+    	   	var nested3 = document.createElement("span"); // Create a text node
+    	   	nested3.className = "badge badge-primary badge-pill";
+    	   	nested3.style.backgroundColor = "#FF69B4";
+    	   	nested3.innerText = obj[i][3];
+    	   	nested1.appendChild(nested3);
+  	
+    	   	//add list data 
+    	   	
+    	   	var listDataNode = document.createElement("div");
+    	   	listDataNode.setAttribute("id",i);
+    	   	listDataNode.className = "list-group collapse";
+    	   	var listDataNodeNested11 = document.createElement("a");
+    	   	listDataNodeNested11.className = "list-group-item";
+    	   	
+    	   	listDataNodeNested11.innerText = "Author : "+obj[i][2];
+    	   	listDataNode.appendChild(listDataNodeNested11);
+    	   	var listDataNodeNested12 = document.createElement("a");
+    	   	listDataNodeNested12.className = "list-group-item";
+    	   	listDataNodeNested12.innerText = "Status : "+obj[i][4];
+    	   	listDataNode.appendChild(listDataNodeNested12);
+    	   	var listDataNodeNested13 = document.createElement("a");
+    	   	listDataNodeNested13.className = "list-group-item";
+    	   	listDataNodeNested13.innerText = "Comment : ";
+    	   	listDataNode.appendChild(listDataNodeNested13);
+    	   	
+    	   	var listDataNodeNested14 = document.createElement("a");
+    	   	listDataNodeNested14.setAttribute("id","delicon");
+    	  	var par= "delBook("+uname+","+obj[i][1]+","+obj[i][2]+")";
+    	  	console.log(par);
+            console.log(uname);
+    	   	listDataNodeNested14.setAttribute("onclick",par);
+    	   	listDataNodeNested14.className = "list-group-item glyphicon glyphicon-remove float-right";
+    	  	listDataNodeNested14.style.color = "red";
+    	  	
+    	   	listDataNode.appendChild(listDataNodeNested14);
+    	   	
+    	   	node.appendChild(nested1);
+    	    node.appendChild(listDataNode);
+    	   	  	    
+    	  // 	topNode.appendChild(node);
+    	   	document.getElementById("book").appendChild(node); 
+   	   
+       }
+      // document.getElementById("bookid").innerHTML = obj[0][0];
+         console.log(obj);
+         
+      }
+
+    });
+
+    var uri = "http://localhost:8080/mybrary/rest/user/"+uname+"/books";
+
+    xhr.open("GET", uri,true);
+
+    xhr.send();
+	
+}
+
+function delBook(uname, bookname, author)
+{
+	console.log("inside delete script");
+	var user = {
+
+		     "book_name":bookname,
+		     "author":author,
+		    }
+
+		var xhr = new XMLHttpRequest();
+
+		xhr.addEventListener("readystatechange", function () {
+
+		  if (this.readyState === 4 && this.status == 200) {
+
+			 window.location.href = "http://localhost:8080/mybrary/content.html";
+		    console.log(this.responseText);
+
+		  }
+		  else
+			  document.getElementById("info").innerHTML = "Deletion failed!..Please try again";
+
+		});
+
+		var uri = "http://localhost:8080/mybrary/rest/user/"+uname+"/books";
+
+		xhr.open("DELETE", uri);
+
+		xhr.setRequestHeader("Content-Type", "application/json");
+		xhr.setRequestHeader("Access-Control-Allow-Credentials", "false");
+		xhr.send(JSON.stringify({ "book_name": user.book_name ,"author":user.author}));
+   	
+}
+
+function setCookie(cname, cvalue, exdays) {
+	  var d = new Date();
+	  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+	  var expires = "expires="+d.toUTCString();
+	  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	}
+
+	function getCookie(cname) {
+	  var name = cname + "=";
+	  var ca = document.cookie.split(';');
+	  for(var i = 0; i < ca.length; i++) {
+	    var c = ca[i];
+	    while (c.charAt(0) == ' ') {
+	      c = c.substring(1);
+	    }
+	    if (c.indexOf(name) == 0) {
+	      return c.substring(name.length, c.length);
+	    }
+	  }
+	  return "";
+	}
+
+function logout()
+{
+	//destroy cookie
+	var user = accessCookie("uname");
+	var d = new Date(); //Create an date object
+    d.setTime(d.getTime() - (1000*60*60*24));
+	console.log(" before destroying "+user);
+	var expires = "expires=" + d.toGMTString();
+	window.document.cookie = "uname"+"="+"; "+expires;
+	console.log("in destroy function");
+	user = accessCookie("uname");
+	console.log(" after destroying "+user);
+	window.location.href = "http://localhost:8080/mybrary/start.html";
+	
+}
+
+
+</script>
+
+
+</body>
+
+</html>
+
+ 

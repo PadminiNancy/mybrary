@@ -253,7 +253,7 @@ body {
 
   <div class="input-group">
 
-    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+    <span class="input-group-addon"><i class="fas fa-book"></i></span>
 
     <input id="bookname" type="text" class="form-control input-lg"  name="Book Name" placeholder="Book Name">
 
@@ -261,7 +261,7 @@ body {
 
   <div class="input-group" style="margin-top:20px;">
 
-    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 
     <input id="rauthor" type="text"  class="form-control input-lg"  name="Author" placeholder="Author">
 
@@ -269,7 +269,7 @@ body {
 
   <div class="input-group" style="margin-top:20px;">
 
-    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+    <span class="input-group-addon"><i class="fa fa-rupee"></i></span>
 
     <input id="rprice" type="text" class="form-control input-lg"  name="Price" placeholder="Price">
 
@@ -277,19 +277,19 @@ body {
   
   <div class="input-group" style="margin-top:20px;">
 
-    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+    <span class="input-group-addon"><i class="fa fa-shopping-cart"></i></span>
 
     <input id="rstatus" type="text" class="form-control input-lg"  name="Status" placeholder="Status">
 
   </div>
   
-  <!-- <div class="input-group" style="margin-top:20px;">
+   <div class="input-group" style="margin-top:20px;">
 
-    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+    <span class="input-group-addon"><i class="fas fa-comment-alt"></i></span>
 
-    <input id="lname" type="text" class="form-control input-lg"  name="Comment" placeholder="Comment">
+    <input id="comment" type="text" class="form-control input-lg"  name="Comment" placeholder="Comment">
 
-  </div> -->
+  </div> 
 
  </form>
 
@@ -322,13 +322,15 @@ function onSubmit()
 	let author = document.getElementById("rauthor").value;
 	let price = document.getElementById("rprice").value;
 	let status = document.getElementById("rstatus").value;
+	let comment = document.getElementById("comment").value;
 
 	    var user = {
 
 	     "book_name":bookname,
 	     "author":author,
 	     "price":price,
-	     "status":status
+	     "status":status,
+	     "comment":comment
 
 	    }
 
@@ -353,7 +355,7 @@ function onSubmit()
 
 	xhr.setRequestHeader("Content-Type", "application/json");
 	xhr.setRequestHeader("Access-Control-Allow-Credentials", "false");
-	xhr.send(JSON.stringify({ "book_name": user.book_name ,"author":user.author ,"price": user.price ,"status":user.status}));
+	xhr.send(JSON.stringify({ "book_name": user.book_name ,"author":user.author ,"price": user.price ,"status":user.status , "comment":user.comment}));
 	
 }
 
@@ -460,16 +462,33 @@ function getBooks(uname)
     	   	listDataNode.appendChild(listDataNodeNested12);
     	   	var listDataNodeNested13 = document.createElement("a");
     	   	listDataNodeNested13.className = "list-group-item";
-    	   	listDataNodeNested13.innerText = "Comment : ";
+    	   	listDataNodeNested13.innerText = "Comment : "+obj[i][5];
     	   	listDataNode.appendChild(listDataNodeNested13);
     	   	
     	   	var listDataNodeNested14 = document.createElement("a");
     	   	listDataNodeNested14.setAttribute("id","delicon");
-    	  	var par= "delBook("+uname+","+obj[i][1]+","+obj[i][2]+")";
-    	  	console.log(par);
+    	   	var book = obj[i][1];
+    	   	var author = obj[i][2];
+    	  	//var par= ;
+    	  	
+    	  	listDataNodeNested14.setAttribute("onclick","testDel("+'user50'+","+'epic'+","+'abc'+");");
+    	  	console.log(document.getElementById("delicon"));
+    	  //	document.getElementById("delicon").onclick = function() {par};
+    	  	//code changes : ram -09th apr
+    	  //	
+    	  	
+    	  	
+    	  	//code changes : ram -09th apr
+     	 // 	console.log(par);
             console.log(uname);
-    	   	listDataNodeNested14.setAttribute("onclick",par);
+    	   	
+            
+            
     	   	listDataNodeNested14.className = "list-group-item glyphicon glyphicon-remove float-right";
+    	   	
+    	   //	id.onclick = function() {testDel(uname, book, author)};
+    	   	
+    	   	//listDataNodeNested14.setAttribute("onclick",par);
     	  	listDataNodeNested14.style.color = "red";
     	  	
     	   	listDataNode.appendChild(listDataNodeNested14);
@@ -494,6 +513,12 @@ function getBooks(uname)
 
     xhr.send();
 	
+}
+
+function testDel(uname, bookname, author)
+{
+	console.log("inside test delete script");
+	console.log(uname+" "+bookname+" "+author);
 }
 
 function delBook(uname, bookname, author)

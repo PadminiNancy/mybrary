@@ -33,6 +33,7 @@ public class BookInfo {
 	//@Column(name = "price")
 	private int price;
 	private String status;
+	private String comment;
 	//@OneToMany(mappedBy = "bookstatus", cascade = CascadeType.ALL)
 	private UserInfo user;
 
@@ -46,6 +47,16 @@ public class BookInfo {
 		this.author = author;
 		this.price = price;
 		this.status = status;
+	}
+
+	
+	
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 	public int getBook_id() {

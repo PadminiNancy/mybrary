@@ -24,6 +24,7 @@ public class BookDao {
         b.setAuthor(book.getAuthor());
         b.setPrice(book.getPrice());
         b.setStatus(book.getStatus());
+        b.setComment(book.getComment());
         b.setUser(u);
 		session.save(b); 
         tx.commit();
@@ -68,6 +69,7 @@ public class BookDao {
 		b.setAuthor(book.getAuthor());
 		b.setPrice(book.getPrice());
 		b.setStatus(book.getStatus());
+		b.setComment(book.getComment());
 		session.saveOrUpdate(b);
         tx.commit();
         session.close();

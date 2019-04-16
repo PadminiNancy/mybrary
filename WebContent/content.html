@@ -93,7 +93,7 @@ body {
 #backres {
 
 
-    background-image: url('images/lib4.jpg'); background-repeat: repeat; background-size: 100%; background-position: center center;   
+    background-image: url('images/jlib1.jpg'); background-repeat: repeat; background-size: 100%; background-position: center center;   
 
 }
 
@@ -224,7 +224,7 @@ body {
 
 <div class="container" style="padding-left:16px;margin-top:20px;margin-bottom:20px;">
 
-  <span id="addBook" class="glyphicon glyphicon-plus" style="font-size:28px;color:white;margin-bottom:20px;" data-toggle="modal" data-target="#myModal"></span> 
+  <a href="javascript: void(0)" id="addBook" class=" glyphicon-plus" style="font-size:28px;color:white;margin-bottom:20px;" data-toggle="modal" data-target="#myModal"></a> 
 
  <div class="container" id="book">
     
@@ -465,37 +465,23 @@ function getBooks(uname)
     	   	listDataNodeNested13.innerText = "Comment : "+obj[i][5];
     	   	listDataNode.appendChild(listDataNodeNested13);
     	   	
-    	   	var listDataNodeNested14 = document.createElement("a");
-    	   	listDataNodeNested14.setAttribute("id","delicon");
     	   	var book = obj[i][1];
     	   	var author = obj[i][2];
-    	  	//var par= ;
-    	  	
-    	  	listDataNodeNested14.setAttribute("onclick","testDel("+'user50'+","+'epic'+","+'abc'+");");
-    	  	console.log(document.getElementById("delicon"));
-    	  //	document.getElementById("delicon").onclick = function() {par};
-    	  	//code changes : ram -09th apr
-    	  //	
-    	  	
-    	  	
-    	  	//code changes : ram -09th apr
-     	 // 	console.log(par);
+    	   	
+    	   	var listDataNodeNested14 = document.createElement("a");
+    	   	listDataNodeNested14.setAttribute("id",uname+"/"+book+"/"+author);
+    	   
+    	  	// set cookie
+    	  	//setCookie("usernme",uname,1);
+    	  	//setCookie("booknme",book,1);
+    	  	//setCookie("authornme",author,1);
+    	  	listDataNodeNested14.addEventListener("click",function(){testDel(this.id)},false);
             console.log(uname);
-    	   	
-            
-            
     	   	listDataNodeNested14.className = "list-group-item glyphicon glyphicon-remove float-right";
-    	   	
-    	   //	id.onclick = function() {testDel(uname, book, author)};
-    	   	
-    	   	//listDataNodeNested14.setAttribute("onclick",par);
-    	  	listDataNodeNested14.style.color = "red";
-    	  	
+    	    listDataNodeNested14.style.color = "red";
     	   	listDataNode.appendChild(listDataNodeNested14);
-    	   	
     	   	node.appendChild(nested1);
     	    node.appendChild(listDataNode);
-    	   	  	    
     	  // 	topNode.appendChild(node);
     	   	document.getElementById("book").appendChild(node); 
    	   
@@ -515,10 +501,15 @@ function getBooks(uname)
 	
 }
 
-function testDel(uname, bookname, author)
+function testDel(book)
 {
-	console.log("inside test delete script");
-	console.log(uname+" "+bookname+" "+author);
+
+ 
+  var tokens = book.split("/");
+
+
+  delBook(tokens[0], tokens[1], tokens[2]);
+	
 }
 
 function delBook(uname, bookname, author)
@@ -577,6 +568,17 @@ function setCookie(cname, cvalue, exdays) {
 	  return "";
 	}
 
+function destroyCookie(cname){
+	
+	
+	//var user = accessCookie(cname);
+	var d = new Date(); //Create an date object
+    d.setTime(d.getTime() - (1000*60*60*24));
+	console.log(" before destroying "+cname);
+	var expires = "expires=" + d.toGMTString();
+	window.document.cookie = cname+"="+"; "+expires;
+	
+}	
 function logout()
 {
 	//destroy cookie
@@ -592,7 +594,6 @@ function logout()
 	window.location.href = "http://localhost:8080/mybrary/start.html";
 	
 }
-
 
 </script>
 

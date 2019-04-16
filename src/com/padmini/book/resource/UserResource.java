@@ -34,8 +34,13 @@ public class UserResource {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String login(@QueryParam("name") String name, @QueryParam("pass") String password)
 	{
+		
 		UserInfo uf = ud.getUser(name);
-		if(uf.getUname().equals(name) && uf.getPassword().equals(password))
+		if(uf.getUname().equals("nf"))
+			return "nf";
+		//System.out.println("Name is : "+uf.getUname());
+		
+		else if(uf.getUname().equals(name) && uf.getPassword().equals(password))
 		  return "t";
 		//	return uf;
 		else

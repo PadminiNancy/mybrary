@@ -30,16 +30,25 @@ public class UserDao {
 	
 	public UserInfo getUser(String uname)
 	{
-		
+		UserInfo u;
+		try {
 		Session session =  SessionUtil.getSession();        
         Transaction tx = session.beginTransaction();
-        System.out.println("before fetch : "+uname);
-        UserInfo u = (UserInfo)session.get(UserInfo.class,uname); 
-        
-        System.out.println("After fetch : "+u.getUname());
+        //System.out.println("before fetch : "+uname);
+        u = (UserInfo)session.get(UserInfo.class,uname);
+        String s = u.getUname();
+       // System.out.println("After fetch : "+u.getUname());
         tx.commit();
         session.close();
         return u;
+		}
+		
+		catch(NullPointerException n)
+		{
+			UserInfo uf = new UserInfo();
+			uf.setUname("nf");
+			return uf;
+		}
 	}
 	
 	public UserInfo getAllUsers()
